@@ -249,11 +249,11 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7Rt-Eo-mQX" customClass="LineChartView" customModule="Charts">
-                                <rect key="frame" x="0.0" y="90" width="375" height="544"/>
+                                <rect key="frame" x="15" y="90" width="345" height="500"/>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="375" id="3pZ-7b-9Ik"/>
-                                    <constraint firstAttribute="height" constant="544" id="xyK-OH-6AN"/>
+                                    <constraint firstAttribute="width" constant="345" id="3pZ-7b-9Ik"/>
+                                    <constraint firstAttribute="height" constant="500" id="xyK-OH-6AN"/>
                                 </constraints>
                             </view>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="hDI-xD-UtV">
@@ -269,18 +269,33 @@
                                     <segment title="Angry"/>
                                     <segment title="Surprised"/>
                                 </segments>
+                                <connections>
+                                    <action selector="emotionSegmentTapped:" destination="EEj-bk-10W" eventType="valueChanged" id="jfZ-gx-SeY"/>
+                                </connections>
                             </segmentedControl>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vK8-sh-4CN" customClass="PieChartView" customModule="Charts">
+                                <rect key="frame" x="16" y="91" width="345" height="500"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="345" id="a1x-o5-yo8"/>
+                                    <constraint firstAttribute="height" constant="500" id="deb-OW-9jC"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="vK8-sh-4CN" firstAttribute="top" secondItem="hDI-xD-UtV" secondAttribute="bottom" constant="23" id="SID-WQ-PVm"/>
                             <constraint firstItem="7Rt-Eo-mQX" firstAttribute="top" secondItem="iQy-SM-Qyi" secondAttribute="bottom" constant="70" id="UkK-bZ-kQB"/>
+                            <constraint firstItem="vK8-sh-4CN" firstAttribute="leading" secondItem="GqI-Yg-6xr" secondAttribute="leadingMargin" id="Zge-Zf-8Fp"/>
                             <constraint firstItem="hDI-xD-UtV" firstAttribute="top" secondItem="iQy-SM-Qyi" secondAttribute="bottom" constant="20" id="dxG-H2-QgF"/>
-                            <constraint firstItem="7Rt-Eo-mQX" firstAttribute="leading" secondItem="GqI-Yg-6xr" secondAttribute="leading" id="tts-Hp-E1h"/>
+                            <constraint firstItem="7Rt-Eo-mQX" firstAttribute="leading" secondItem="GqI-Yg-6xr" secondAttribute="leading" constant="15" id="tts-Hp-E1h"/>
                             <constraint firstItem="hDI-xD-UtV" firstAttribute="leading" secondItem="GqI-Yg-6xr" secondAttribute="leadingMargin" id="v6m-g1-4F1"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="emotionSegment" destination="hDI-xD-UtV" id="CjL-nu-pAP"/>
                         <outlet property="lineChart" destination="7Rt-Eo-mQX" id="Tan-nQ-Rug"/>
+                        <outlet property="pieChart" destination="vK8-sh-4CN" id="lHz-ja-pdC"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="e3I-6v-sHe" userLabel="First Responder" sceneMemberID="firstResponder"/>
