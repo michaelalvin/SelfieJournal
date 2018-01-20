@@ -22,6 +22,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     let imagePicker = UIImagePickerController()
     let session = URLSession.shared
     let ref = Database.database().reference()
+    var addEmotion = "emotion"
     
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var spinner: UIActivityIndicatorView!
@@ -29,9 +30,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     @IBOutlet weak var labelResults: UITextView!
     @IBOutlet weak var faceResults: UITextView!
     @IBOutlet weak var inputOne: UITextField!
-    @IBOutlet weak var inputTwo: UITextField!
-    
-    @IBOutlet weak var inputThree: UITextField!
+
     var googleAPIKey = "YOUR_API_KEY"
     var googleURL: URL {
         return URL(string: "https://vision.googleapis.com/v1/images:annotate?key=\("AIzaSyDXV1mjaTKtYl3DQfW74LC5GfDvjgLehtQ")")!
@@ -48,10 +47,14 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         if let uid = Auth.auth().currentUser?.uid {
             let userID = Auth.auth().currentUser?.uid
             let dayTimePeriodFormatter = DateFormatter()
-            dayTimePeriodFormatter.dateFormat = "MMMM d, h:mm a"
+            dayTimePeriodFormatter.dateFormat = "MMMM d"
+            //"MMMM d, h:mm a"
             let stringDate = dayTimePeriodFormatter.string(from: NSDate() as Date)
           
-            ref.child("users").child(userID!).child("emotions").child(stringDate).setValue("happy")
+            //GET INITIAL EMOTION VALUE FOR DATE THEN //GETS DATE -> EMOTION(HAPPY) -> VALUE++
+            ref.child("users").child(userID!).child("emotions").child(stringDate).child(addEmotion).setValue(1)
+            
+            
 //            let key = ref.child("users").child(userID!).child("emotions").childByAutoId()
 //            key.child("emotion").setValue("happy")
 //            key.child("date").setValue(stringDate);
@@ -66,12 +69,9 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         labelResults.isHidden = true
         faceResults.isHidden = true
         spinner.hidesWhenStopped = true
-        inputTwo.isHidden = true
-        inputThree.isHidden = true
 
         inputOne.underlined()
-        inputTwo.underlined()
-        inputThree.underlined()
+       
     }
 
     override func didReceiveMemoryWarning() {
@@ -135,6 +135,10 @@ extension ViewController {
                         let likelihood:Double = total / Double(numPeopleDetected)
                         let percent: Int = Int(round(likelihood * 100))
                         self.faceResults.text! += "\(emotion): \(percent)%\n"
+                        
+                        if(percent > 70) {
+                            self.addEmotion = emotion
+                        }
                     }
                 } else {
                     self.faceResults.text = "No faces found"

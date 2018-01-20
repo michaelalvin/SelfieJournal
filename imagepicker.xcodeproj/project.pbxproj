@@ -10,11 +10,13 @@
 		1BB2EE991C359A9C0066BECE /* SwiftyJSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1BB2EE981C359A9C0066BECE /* SwiftyJSON.framework */; settings = {ATTRIBUTES = (Required, ); }; };
 		1BFC2E7E1BF1AA7300885EBB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BFC2E7D1BF1AA7300885EBB /* AppDelegate.swift */; };
 		1BFC2E801BF1AA7300885EBB /* ImagePickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BFC2E7F1BF1AA7300885EBB /* ImagePickerViewController.swift */; };
-		1BFC2E831BF1AA7300885EBB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1BFC2E811BF1AA7300885EBB /* Main.storyboard */; };
 		1BFC2E851BF1AA7300885EBB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1BFC2E841BF1AA7300885EBB /* Assets.xcassets */; };
 		1BFC2E881BF1AA7300885EBB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1BFC2E861BF1AA7300885EBB /* LaunchScreen.storyboard */; };
 		1BFC2E931BF1AA7300885EBB /* imagepickerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BFC2E921BF1AA7300885EBB /* imagepickerTests.swift */; };
 		1BFC2E9E1BF1AA7300885EBB /* imagepickerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BFC2E9D1BF1AA7300885EBB /* imagepickerUITests.swift */; };
+		4312BF462012F47F00A7AFCC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4312BF442012F47F00A7AFCC /* Main.storyboard */; };
+		4312BF472012F47F00A7AFCC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4312BF442012F47F00A7AFCC /* Main.storyboard */; };
+		4312BF482012F47F00A7AFCC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4312BF442012F47F00A7AFCC /* Main.storyboard */; };
 		4333A0CC20105C4F004E48AC /* ChartsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4333A0CB20105C4F004E48AC /* ChartsViewController.swift */; };
 		4333A0CD20105C4F004E48AC /* ChartsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4333A0CB20105C4F004E48AC /* ChartsViewController.swift */; };
 		4333A0CE20105C4F004E48AC /* ChartsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4333A0CB20105C4F004E48AC /* ChartsViewController.swift */; };
@@ -56,7 +58,6 @@
 		1BFC2E7A1BF1AA7300885EBB /* imagepicker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = imagepicker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1BFC2E7D1BF1AA7300885EBB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1BFC2E7F1BF1AA7300885EBB /* ImagePickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePickerViewController.swift; sourceTree = "<group>"; };
-		1BFC2E821BF1AA7300885EBB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		1BFC2E841BF1AA7300885EBB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1BFC2E871BF1AA7300885EBB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		1BFC2E891BF1AA7300885EBB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -68,6 +69,7 @@
 		1BFC2E9F1BF1AA7300885EBB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		249890A99ED0C03E4BF78770 /* Pods_imagepicker.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_imagepicker.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		39CF979D4FE706B3A1A1DD8B /* Pods-imagepicker.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-imagepicker.release.xcconfig"; path = "Pods/Target Support Files/Pods-imagepicker/Pods-imagepicker.release.xcconfig"; sourceTree = "<group>"; };
+		4312BF452012F47F00A7AFCC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = "../../../../../../Downloads/SelfieJournal-master/imagepicker/Base.lproj/Main.storyboard"; sourceTree = "<group>"; };
 		4333A0CB20105C4F004E48AC /* ChartsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartsViewController.swift; sourceTree = "<group>"; };
 		436BAE28200C5B97005F1A11 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../GoogleService-Info.plist"; sourceTree = "<group>"; };
 		43FC7684200C4D0500110DDF /* LogViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogViewController.swift; sourceTree = "<group>"; };
@@ -139,9 +141,9 @@
 				436BAE28200C5B97005F1A11 /* GoogleService-Info.plist */,
 				1BFC2E7D1BF1AA7300885EBB /* AppDelegate.swift */,
 				1BFC2E7F1BF1AA7300885EBB /* ImagePickerViewController.swift */,
-				1BFC2E811BF1AA7300885EBB /* Main.storyboard */,
 				4333A0CB20105C4F004E48AC /* ChartsViewController.swift */,
 				1BFC2E841BF1AA7300885EBB /* Assets.xcassets */,
+				4312BF442012F47F00A7AFCC /* Main.storyboard */,
 				1BFC2E861BF1AA7300885EBB /* LaunchScreen.storyboard */,
 				1BFC2E891BF1AA7300885EBB /* Info.plist */,
 				43FF381D20092AFD00C0BB66 /* File.swift */,
@@ -291,7 +293,7 @@
 				1BFC2E881BF1AA7300885EBB /* LaunchScreen.storyboard in Resources */,
 				436BAE29200C5B97005F1A11 /* GoogleService-Info.plist in Resources */,
 				1BFC2E851BF1AA7300885EBB /* Assets.xcassets in Resources */,
-				1BFC2E831BF1AA7300885EBB /* Main.storyboard in Resources */,
+				4312BF462012F47F00A7AFCC /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -300,6 +302,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				436BAE2A200C5B97005F1A11 /* GoogleService-Info.plist in Resources */,
+				4312BF472012F47F00A7AFCC /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -308,6 +311,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				436BAE2B200C5B97005F1A11 /* GoogleService-Info.plist in Resources */,
+				4312BF482012F47F00A7AFCC /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -432,20 +436,20 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		1BFC2E811BF1AA7300885EBB /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				1BFC2E821BF1AA7300885EBB /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		1BFC2E861BF1AA7300885EBB /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
 				1BFC2E871BF1AA7300885EBB /* Base */,
 			);
 			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		4312BF442012F47F00A7AFCC /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				4312BF452012F47F00A7AFCC /* Base */,
+			);
+			name = Main.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
