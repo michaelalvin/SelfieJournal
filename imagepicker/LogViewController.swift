@@ -65,6 +65,8 @@ class LogViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        segmentControl.tintColor = UIColor(rgb: 0xffffff)
+        
                 let gradient = CAGradientLayer()
         
                 gradient.frame = view.bounds

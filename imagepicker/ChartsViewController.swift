@@ -10,7 +10,7 @@ import UIKit
 import Charts
 
 class ChartsViewController: UIViewController {
-
+    
     
     var numbers = [12.0, 22.0, 12.0, 32.0] //This is where we are going to store all the numbers. This can be a set of numbers that come from a Realm database, Core data, External API's or where ever else
     
@@ -22,7 +22,7 @@ class ChartsViewController: UIViewController {
     @IBOutlet weak var pieChart: PieChartView!
     
     @IBOutlet weak var emotionSegment: UISegmentedControl!
-   
+    
     @IBAction func emotionSegmentTapped(_ sender: Any) {
         if(emotionSegment.selectedSegmentIndex == 0) {
             lineChart.isHidden = true
@@ -169,10 +169,11 @@ class ChartsViewController: UIViewController {
     }
     
     
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     
 }
+

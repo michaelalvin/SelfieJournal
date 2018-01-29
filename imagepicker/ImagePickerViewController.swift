@@ -43,6 +43,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         present(imagePicker, animated: true, completion: nil)
     }
     
+    var currentValue = 0
     @IBAction func journalButton(_ sender: Any) {
         if let uid = Auth.auth().currentUser?.uid {
             let userID = Auth.auth().currentUser?.uid
@@ -50,15 +51,43 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
             dayTimePeriodFormatter.dateFormat = "MMMM d"
             //"MMMM d, h:mm a"
             let stringDate = dayTimePeriodFormatter.string(from: NSDate() as Date)
-          
+            
             //GET INITIAL EMOTION VALUE FOR DATE THEN //GETS DATE -> EMOTION(HAPPY) -> VALUE++
-            ref.child("users").child(userID!).child("emotions").child(stringDate).child(addEmotion).setValue(1)
+            if(addEmotion != "emotion") {
+                getEmotionValue()
+                DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(4), execute: {
+                        // Put your code which should be executed with a delay here
+                    self.ref.child("users").child(userID!).child("emotions").child(stringDate).child(self.addEmotion).setValue(self.currentValue+1)
+                })
+            }
             
-            
-//            let key = ref.child("users").child(userID!).child("emotions").childByAutoId()
-//            key.child("emotion").setValue("happy")
-//            key.child("date").setValue(stringDate);
             self.performSegue(withIdentifier: "segue1", sender: self)
+        }
+    }
+    
+    func getEmotionValue() {
+        var value: Int = 0
+        
+        if let uid = Auth.auth().currentUser?.uid {
+            let userID = Auth.auth().currentUser?.uid
+            let dayTimePeriodFormatter = DateFormatter()
+            dayTimePeriodFormatter.dateFormat = "MMMM d"
+            //"MMMM d, h:mm a"
+            let stringDate = dayTimePeriodFormatter.string(from: NSDate() as Date)
+            
+            let ref2 = ref.child("users").child(userID!).child("emotions").child(stringDate).child(addEmotion)
+            
+            ref2.observe(DataEventType.value, with: {
+                snapshot in
+                
+                if let item = snapshot.value as? Int {
+                    value = item
+                    self.currentValue = item
+                }
+            }) { (error) in
+                print(error.localizedDescription)
+            }
+
         }
     }
     
@@ -69,9 +98,10 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         labelResults.isHidden = true
         faceResults.isHidden = true
         spinner.hidesWhenStopped = true
+        
 
         inputOne.underlined()
-       
+        
     }
 
     override func didReceiveMemoryWarning() {
