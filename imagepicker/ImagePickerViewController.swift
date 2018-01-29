@@ -87,7 +87,6 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
             }) { (error) in
                 print(error.localizedDescription)
             }
-
         }
     }
     
@@ -99,14 +98,36 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         faceResults.isHidden = true
         spinner.hidesWhenStopped = true
         
-
         inputOne.underlined()
         
+        // Gesture Recognizer
+        let swipeRight = UISwipeGestureRecognizer(target: self, action: #selector(self.respondToSwipeGesture))
+        swipeRight.direction = UISwipeGestureRecognizerDirection.right
+        
+        self.view.addGestureRecognizer(swipeRight)
+        let swipeLeft = UISwipeGestureRecognizer(target: self, action: #selector(self.respondToSwipeGesture))
+        swipeLeft.direction = UISwipeGestureRecognizerDirection.left
+        self.view.addGestureRecognizer(swipeLeft)
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    func respondToSwipeGesture(gesture: UIGestureRecognizer) {
+        if let swipeGesture = gesture as? UISwipeGestureRecognizer {
+            switch swipeGesture.direction {
+            //case UISwipeGestureRecognizerDirection.right:
+                //right view controller
+                //self.performSegue(withIdentifier: "segue1", sender: self)
+            case UISwipeGestureRecognizerDirection.left:
+                //left view controller
+                self.performSegue(withIdentifier: "segue1", sender: self)
+            default:
+                break
+            }
+        }
     }
 }
 

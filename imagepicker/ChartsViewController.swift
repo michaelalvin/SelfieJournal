@@ -166,8 +166,31 @@ class ChartsViewController: UIViewController {
         lineChart.isHidden = true
         pieChart.isHidden = false
         setChart(dataPoints: months, values: unitsSold)
+        
+        // Gesture Recognizer
+        let swipeRight = UISwipeGestureRecognizer(target: self, action: #selector(self.respondToSwipeGesture))
+        swipeRight.direction = UISwipeGestureRecognizerDirection.right
+        
+        self.view.addGestureRecognizer(swipeRight)
+        let swipeLeft = UISwipeGestureRecognizer(target: self, action: #selector(self.respondToSwipeGesture))
+        swipeLeft.direction = UISwipeGestureRecognizerDirection.left
+        self.view.addGestureRecognizer(swipeLeft)
     }
     
+    func respondToSwipeGesture(gesture: UIGestureRecognizer) {
+        if let swipeGesture = gesture as? UISwipeGestureRecognizer {
+            switch swipeGesture.direction {
+                case UISwipeGestureRecognizerDirection.right:
+                //right view controller
+                    self.performSegue(withIdentifier: "segue2", sender: self)
+                //case UISwipeGestureRecognizerDirection.left:
+                //left view controller
+                //self.performSegue(withIdentifier: "segue1", sender: self)
+            default:
+                break
+            }
+        }
+    }
     
     
     override func didReceiveMemoryWarning() {

@@ -19,6 +19,9 @@
 		4333A0CD20105C4F004E48AC /* ChartsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4333A0CB20105C4F004E48AC /* ChartsViewController.swift */; };
 		4333A0CE20105C4F004E48AC /* ChartsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4333A0CB20105C4F004E48AC /* ChartsViewController.swift */; };
 		43C43C84201EDEB100233B36 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 43C43C83201EDEB100233B36 /* GoogleService-Info.plist */; };
+		43DDAD90201EFAED00ABD197 /* SegueFromLeft.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43DDAD8F201EFAED00ABD197 /* SegueFromLeft.swift */; };
+		43DDAD91201EFAED00ABD197 /* SegueFromLeft.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43DDAD8F201EFAED00ABD197 /* SegueFromLeft.swift */; };
+		43DDAD92201EFAED00ABD197 /* SegueFromLeft.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43DDAD8F201EFAED00ABD197 /* SegueFromLeft.swift */; };
 		43FC7685200C4D0500110DDF /* LogViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43FC7684200C4D0500110DDF /* LogViewController.swift */; };
 		43FC7686200C4D0500110DDF /* LogViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43FC7684200C4D0500110DDF /* LogViewController.swift */; };
 		43FC7687200C4D0500110DDF /* LogViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43FC7684200C4D0500110DDF /* LogViewController.swift */; };
@@ -68,6 +71,7 @@
 		39CF979D4FE706B3A1A1DD8B /* Pods-imagepicker.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-imagepicker.release.xcconfig"; path = "Pods/Target Support Files/Pods-imagepicker/Pods-imagepicker.release.xcconfig"; sourceTree = "<group>"; };
 		4333A0CB20105C4F004E48AC /* ChartsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartsViewController.swift; sourceTree = "<group>"; };
 		43C43C83201EDEB100233B36 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = SOURCE_ROOT; };
+		43DDAD8F201EFAED00ABD197 /* SegueFromLeft.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegueFromLeft.swift; sourceTree = "<group>"; };
 		43FC7684200C4D0500110DDF /* LogViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogViewController.swift; sourceTree = "<group>"; };
 		43FF381D20092AFD00C0BB66 /* File.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = File.swift; sourceTree = "<group>"; };
 		D1D2D37BECBAFEFA38A63C60 /* Pods-imagepicker.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-imagepicker.debug.xcconfig"; path = "Pods/Target Support Files/Pods-imagepicker/Pods-imagepicker.debug.xcconfig"; sourceTree = "<group>"; };
@@ -144,6 +148,7 @@
 				1BFC2E891BF1AA7300885EBB /* Info.plist */,
 				43FF381D20092AFD00C0BB66 /* File.swift */,
 				43FC7684200C4D0500110DDF /* LogViewController.swift */,
+				43DDAD8F201EFAED00ABD197 /* SegueFromLeft.swift */,
 			);
 			path = imagepicker;
 			sourceTree = "<group>";
@@ -378,6 +383,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				43DDAD90201EFAED00ABD197 /* SegueFromLeft.swift in Sources */,
 				1BFC2E801BF1AA7300885EBB /* ImagePickerViewController.swift in Sources */,
 				4333A0CC20105C4F004E48AC /* ChartsViewController.swift in Sources */,
 				43FF381E20092AFD00C0BB66 /* File.swift in Sources */,
@@ -392,6 +398,7 @@
 			files = (
 				43FC7686200C4D0500110DDF /* LogViewController.swift in Sources */,
 				1BFC2E931BF1AA7300885EBB /* imagepickerTests.swift in Sources */,
+				43DDAD91201EFAED00ABD197 /* SegueFromLeft.swift in Sources */,
 				43FC7690200C56AF00110DDF /* ImagePickerViewController.swift in Sources */,
 				4333A0CD20105C4F004E48AC /* ChartsViewController.swift in Sources */,
 				43FC7692200C56B500110DDF /* AppDelegate.swift in Sources */,
@@ -405,6 +412,7 @@
 			files = (
 				43FC7687200C4D0500110DDF /* LogViewController.swift in Sources */,
 				1BFC2E9E1BF1AA7300885EBB /* imagepickerUITests.swift in Sources */,
+				43DDAD92201EFAED00ABD197 /* SegueFromLeft.swift in Sources */,
 				43FC7691200C56AF00110DDF /* ImagePickerViewController.swift in Sources */,
 				4333A0CE20105C4F004E48AC /* ChartsViewController.swift in Sources */,
 				43FC7693200C56B500110DDF /* AppDelegate.swift in Sources */,

@@ -202,9 +202,22 @@
                                     <action selector="journalButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="WKX-1g-bR2"/>
                                 </connections>
                             </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="dot2" translatesAutoresizingMaskIntoConstraints="NO" id="P7r-XS-8rO">
+                                <rect key="frame" x="155" y="627" width="24" height="24"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="24" id="rBG-Jl-qWt"/>
+                                </constraints>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="dot" translatesAutoresizingMaskIntoConstraints="NO" id="g65-5v-2XF">
+                                <rect key="frame" x="194" y="627" width="24" height="24"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="24" id="0xV-Y3-HqE"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="P7r-XS-8rO" firstAttribute="top" secondItem="g65-5v-2XF" secondAttribute="top" id="4Dl-GR-jju"/>
                             <constraint firstItem="fkD-cI-U98" firstAttribute="top" secondItem="jyu-zy-NyR" secondAttribute="bottom" constant="49" id="7M5-Sd-5sf"/>
                             <constraint firstItem="UvL-w5-3iG" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="34" id="CFa-8Y-bE3"/>
                             <constraint firstItem="fkD-cI-U98" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="114" id="F5H-93-vKy"/>
@@ -214,10 +227,15 @@
                             <constraint firstItem="STx-9L-19e" firstAttribute="top" secondItem="fkD-cI-U98" secondAttribute="bottom" constant="8" id="M9X-1g-qfN"/>
                             <constraint firstItem="1eZ-lw-cEv" firstAttribute="top" secondItem="STx-9L-19e" secondAttribute="bottom" constant="100" id="MIU-Uz-2S9"/>
                             <constraint firstItem="jY1-Pj-IAR" firstAttribute="leading" secondItem="2Ut-bY-SEm" secondAttribute="trailing" constant="10" id="MjZ-87-jg3"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="P7r-XS-8rO" secondAttribute="bottom" constant="16" id="SAo-Er-aRF"/>
                             <constraint firstItem="jyu-zy-NyR" firstAttribute="top" secondItem="UvL-w5-3iG" secondAttribute="bottom" constant="20" id="YU6-dj-Thw"/>
+                            <constraint firstItem="g65-5v-2XF" firstAttribute="leading" secondItem="P7r-XS-8rO" secondAttribute="trailing" constant="15" id="enW-fw-02z"/>
+                            <constraint firstItem="P7r-XS-8rO" firstAttribute="top" secondItem="u9E-5T-cch" secondAttribute="bottom" constant="38" id="kv5-MB-Shn"/>
                             <constraint firstItem="1eZ-lw-cEv" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="157" id="nU1-ow-FJi"/>
                             <constraint firstItem="u9E-5T-cch" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="143" id="r1h-6o-ISO"/>
                             <constraint firstItem="2Ut-bY-SEm" firstAttribute="top" secondItem="STx-9L-19e" secondAttribute="bottom" constant="18" id="rN9-B1-pHd"/>
+                            <constraint firstItem="P7r-XS-8rO" firstAttribute="bottom" secondItem="g65-5v-2XF" secondAttribute="bottom" id="rYq-Ti-poa"/>
+                            <constraint firstItem="P7r-XS-8rO" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="155" id="ssL-LM-DfN"/>
                             <constraint firstItem="2Ut-bY-SEm" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="54" id="wui-cL-w9m"/>
                             <constraint firstItem="jY1-Pj-IAR" firstAttribute="top" secondItem="STx-9L-19e" secondAttribute="bottom" constant="146" id="xRS-FB-Tcf"/>
                             <constraint firstItem="jyu-zy-NyR" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="20" id="xUP-ec-6Nw"/>
@@ -230,12 +248,12 @@
                         <outlet property="inputOne" destination="jyu-zy-NyR" id="ESK-e1-mdw"/>
                         <outlet property="labelResults" destination="jY1-Pj-IAR" id="w0q-cD-AVl"/>
                         <outlet property="spinner" destination="1eZ-lw-cEv" id="8RT-oq-9u5"/>
-                        <segue destination="EEj-bk-10W" kind="show" identifier="segue1" id="mYT-gl-A8c"/>
+                        <segue destination="EEj-bk-10W" kind="show" identifier="segue1" customClass="SegueFromLeft" customModule="imagepicker" customModuleProvider="target" id="mYT-gl-A8c"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1695" y="445"/>
+            <point key="canvasLocation" x="1693.5999999999999" y="444.82758620689657"/>
         </scene>
         <!--Charts View Controller-->
         <scene sceneID="z95-Yg-WEe">
@@ -282,34 +300,40 @@
                                     <constraint firstAttribute="height" constant="500" id="deb-OW-9jC"/>
                                 </constraints>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zbH-PM-tMs">
-                                <rect key="frame" x="16" y="611" width="45" height="36"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="dot" translatesAutoresizingMaskIntoConstraints="NO" id="QHD-NE-0gN">
+                                <rect key="frame" x="157" y="623" width="24" height="24"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="36" id="Xdt-Am-FRh"/>
-                                    <constraint firstAttribute="width" constant="45" id="ec9-kj-11b"/>
+                                    <constraint firstAttribute="width" constant="24" id="fNg-CX-PPg"/>
                                 </constraints>
-                                <state key="normal" title="Back"/>
-                                <connections>
-                                    <segue destination="BYZ-38-t0r" kind="show" id="btj-xQ-UGJ"/>
-                                </connections>
-                            </button>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="dot2" translatesAutoresizingMaskIntoConstraints="NO" id="dsD-DI-Bxe">
+                                <rect key="frame" x="196" y="623" width="24" height="24"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="24" id="X6L-5K-z9f"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="zbH-PM-tMs" firstAttribute="top" secondItem="vK8-sh-4CN" secondAttribute="bottom" constant="20" id="Cpz-wo-zgs"/>
-                            <constraint firstItem="zbH-PM-tMs" firstAttribute="leading" secondItem="GqI-Yg-6xr" secondAttribute="leadingMargin" id="KOB-Aw-rWP"/>
+                            <constraint firstItem="QHD-NE-0gN" firstAttribute="top" secondItem="dsD-DI-Bxe" secondAttribute="top" id="7S4-lV-QT1"/>
+                            <constraint firstItem="QHD-NE-0gN" firstAttribute="bottom" secondItem="dsD-DI-Bxe" secondAttribute="bottom" id="HzV-Vo-Bfp"/>
+                            <constraint firstItem="QHD-NE-0gN" firstAttribute="top" secondItem="vK8-sh-4CN" secondAttribute="bottom" constant="32" id="QXa-BF-ooP"/>
                             <constraint firstItem="vK8-sh-4CN" firstAttribute="top" secondItem="hDI-xD-UtV" secondAttribute="bottom" constant="23" id="SID-WQ-PVm"/>
                             <constraint firstItem="7Rt-Eo-mQX" firstAttribute="top" secondItem="iQy-SM-Qyi" secondAttribute="bottom" constant="70" id="UkK-bZ-kQB"/>
                             <constraint firstItem="vK8-sh-4CN" firstAttribute="leading" secondItem="GqI-Yg-6xr" secondAttribute="leadingMargin" id="Zge-Zf-8Fp"/>
                             <constraint firstItem="hDI-xD-UtV" firstAttribute="top" secondItem="iQy-SM-Qyi" secondAttribute="bottom" constant="20" id="dxG-H2-QgF"/>
+                            <constraint firstItem="QHD-NE-0gN" firstAttribute="leading" secondItem="GqI-Yg-6xr" secondAttribute="leading" constant="157" id="krE-3Z-mid"/>
+                            <constraint firstAttribute="bottom" secondItem="QHD-NE-0gN" secondAttribute="bottom" constant="20" symbolic="YES" id="p1s-BV-e41"/>
                             <constraint firstItem="7Rt-Eo-mQX" firstAttribute="leading" secondItem="GqI-Yg-6xr" secondAttribute="leading" constant="15" id="tts-Hp-E1h"/>
                             <constraint firstItem="hDI-xD-UtV" firstAttribute="leading" secondItem="GqI-Yg-6xr" secondAttribute="leadingMargin" id="v6m-g1-4F1"/>
+                            <constraint firstItem="dsD-DI-Bxe" firstAttribute="leading" secondItem="QHD-NE-0gN" secondAttribute="trailing" constant="15" id="wf4-o6-66b"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="emotionSegment" destination="hDI-xD-UtV" id="CjL-nu-pAP"/>
                         <outlet property="lineChart" destination="7Rt-Eo-mQX" id="Tan-nQ-Rug"/>
                         <outlet property="pieChart" destination="vK8-sh-4CN" id="lHz-ja-pdC"/>
+                        <segue destination="BYZ-38-t0r" kind="show" identifier="segue2" customClass="SegueFromLeft" customModule="imagepicker" customModuleProvider="target" id="HeX-WV-pbP"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="e3I-6v-sHe" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -317,7 +341,12 @@
             <point key="canvasLocation" x="2693.5999999999999" y="460.11994002998506"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="dot" width="1050" height="1050"/>
+        <image name="dot2" width="1050" height="1050"/>
+    </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="u3E-EH-8Rb"/>
+        <segue reference="mYT-gl-A8c"/>
+        <segue reference="HeX-WV-pbP"/>
     </inferredMetricsTieBreakers>
 </document>
