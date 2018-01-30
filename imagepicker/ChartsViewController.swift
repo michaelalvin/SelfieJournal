@@ -30,19 +30,19 @@ class ChartsViewController: UIViewController {
         if(emotionSegment.selectedSegmentIndex == 0) {
             lineChart.isHidden = true
             pieChart.isHidden = false
-            //getValuesFromFirebase()
-            
-            DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(4), execute: {
-                    // Put your code which should be executed with a delay here
+            numbers = [0.0, 0.0, 0.0, 0.0]
+            getValuesFromFirebase()
+            DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1), execute: {
+                // Put your code which should be executed with a delay here
                 self.setChart(dataPoints: self.months, values: self.numbers)
             })
             
         } else {
             lineChart.isHidden = false
             pieChart.isHidden = true
-            //getValuesFromFirebase()
-            
-            DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(4), execute: {
+            numbers = [0.0, 0.0, 0.0, 0.0]
+            getValuesFromFirebase()
+            DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1), execute: {
                 // Put your code which should be executed with a delay here
                 self.updateLineGraph()
             })
@@ -51,30 +51,79 @@ class ChartsViewController: UIViewController {
     
     // Updates value in numbers, depending on how many
     var pastSevenDays : [String] = []
+    func getPreviousWeek() {
+        let calendar = Calendar.current
+        let dayTimePeriodFormatter = DateFormatter()
+        dayTimePeriodFormatter.dateFormat = "MM/dd/yyyy"
+        
+        for i in 0..<7 {
+            var num = i
+            num = num * -1
+            let twoDaysAgo = calendar.date(byAdding: .day, value: num, to: Date())
+            let stringDate = dayTimePeriodFormatter.string(from: twoDaysAgo!)
+            pastSevenDays.append(stringDate)
+        }
+            
+//            let userID = Auth.auth().currentUser?.uid
+//            ref.child("users").child(userID!).child("emotions").child(stringDate).child("joy").setValue(arc4random_uniform(6) + 1)
+//            ref.child("users").child(userID!).child("emotions").child(stringDate).child("sorrow").setValue(arc4random_uniform(6) + 1)
+//            ref.child("users").child(userID!).child("emotions").child(stringDate).child("anger").setValue(arc4random_uniform(6) + 1)
+//            ref.child("users").child(userID!).child("emotions").child(stringDate).child("surprise").setValue(arc4random_uniform(6) + 1)
+        
+    }
     
     func getValuesFromFirebase() {
         if let uid = Auth.auth().currentUser?.uid {
             let userID = Auth.auth().currentUser?.uid
-            let dayTimePeriodFormatter = DateFormatter()
-            dayTimePeriodFormatter.dateFormat = "MM/dd/yyyy"
+            //let dayTimePeriodFormatter = DateFormatter()
+            //dayTimePeriodFormatter.dateFormat = "MM/dd/yyyy"
             //"MMMM d, h:mm a"
-            let stringDate = dayTimePeriodFormatter.string(from: NSDate() as Date)
+            //let stringDate = dayTimePeriodFormatter.string(from: NSDate() as Date)
             
             // Gets past 7 days into the string, then
             // have a forloop going through each day, then going through each emotion value,
             // adding them to numbers
             
+            getPreviousWeek()
+            
             for i in 0..<pastSevenDays.count {
                 let date = pastSevenDays[i]
                 
                 var ref2 = ref.child("users").child(userID!).child("emotions").child(date).child("joy")
-                
                 ref2.observe(DataEventType.value, with: {
                     snapshot in
-                    
-                    if let item = snapshot.value as? Int {
-//                        value = item
-//                        self.currentValue = item
+                    if let item = snapshot.value as? Int { // item is emotion int value
+                        self.numbers[0] = self.numbers[0] + Double(item)
+                    }
+                }) { (error) in
+                    print(error.localizedDescription)
+                }
+                
+                ref2 = ref.child("users").child(userID!).child("emotions").child(date).child("sorrow")
+                ref2.observe(DataEventType.value, with: {
+                    snapshot in
+                    if let item = snapshot.value as? Int { // item is emotion int value
+                        self.numbers[1] = self.numbers[1] + Double(item)
+                    }
+                }) { (error) in
+                    print(error.localizedDescription)
+                }
+                
+                ref2 = ref.child("users").child(userID!).child("emotions").child(date).child("anger")
+                ref2.observe(DataEventType.value, with: {
+                    snapshot in
+                    if let item = snapshot.value as? Int { // item is emotion int value
+                        self.numbers[2] = self.numbers[2] + Double(item)
+                    }
+                }) { (error) in
+                    print(error.localizedDescription)
+                }
+                
+                ref2 = ref.child("users").child(userID!).child("emotions").child(date).child("surprise")
+                ref2.observe(DataEventType.value, with: {
+                    snapshot in
+                    if let item = snapshot.value as? Int { // item is emotion int value
+                        self.numbers[3] = self.numbers[3] + Double(item)
                     }
                 }) { (error) in
                     print(error.localizedDescription)
