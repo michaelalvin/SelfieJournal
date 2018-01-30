@@ -48,7 +48,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         if let uid = Auth.auth().currentUser?.uid {
             let userID = Auth.auth().currentUser?.uid
             let dayTimePeriodFormatter = DateFormatter()
-            dayTimePeriodFormatter.dateFormat = "MMMM d"
+            dayTimePeriodFormatter.dateFormat = "MM/dd/yyyy"
             //"MMMM d, h:mm a"
             let stringDate = dayTimePeriodFormatter.string(from: NSDate() as Date)
             
@@ -71,7 +71,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         if let uid = Auth.auth().currentUser?.uid {
             let userID = Auth.auth().currentUser?.uid
             let dayTimePeriodFormatter = DateFormatter()
-            dayTimePeriodFormatter.dateFormat = "MMMM d"
+            dayTimePeriodFormatter.dateFormat = "MM/dd/yyyy"
             //"MMMM d, h:mm a"
             let stringDate = dayTimePeriodFormatter.string(from: NSDate() as Date)
             

@@ -248,7 +248,7 @@
                         <outlet property="inputOne" destination="jyu-zy-NyR" id="ESK-e1-mdw"/>
                         <outlet property="labelResults" destination="jY1-Pj-IAR" id="w0q-cD-AVl"/>
                         <outlet property="spinner" destination="1eZ-lw-cEv" id="8RT-oq-9u5"/>
-                        <segue destination="EEj-bk-10W" kind="show" identifier="segue1" customClass="SegueFromLeft" customModule="imagepicker" customModuleProvider="target" id="mYT-gl-A8c"/>
+                        <segue destination="EEj-bk-10W" kind="show" identifier="segue1" customClass="SegueFromRight" customModule="imagepicker" customModuleProvider="target" id="mYT-gl-A8c"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

@@ -8,14 +8,17 @@
 
 import UIKit
 import Charts
+import Firebase
+import FirebaseAuth
+import FirebaseDatabase
 
 class ChartsViewController: UIViewController {
     
+    let ref = Database.database().reference()
     
     var numbers = [12.0, 22.0, 12.0, 32.0] //This is where we are going to store all the numbers. This can be a set of numbers that come from a Realm database, Core data, External API's or where ever else
     
     let months = ["Happy", "Sad", "Angry", "Surprised"]
-    let unitsSold = [20.0, 4.0, 6.0, 3.0]
     
     @IBOutlet weak var lineChart: LineChartView!
     
@@ -27,14 +30,58 @@ class ChartsViewController: UIViewController {
         if(emotionSegment.selectedSegmentIndex == 0) {
             lineChart.isHidden = true
             pieChart.isHidden = false
-            setChart(dataPoints: months, values: unitsSold)
+            //getValuesFromFirebase()
+            
+            DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(4), execute: {
+                    // Put your code which should be executed with a delay here
+                self.setChart(dataPoints: self.months, values: self.numbers)
+            })
+            
         } else {
             lineChart.isHidden = false
             pieChart.isHidden = true
-            updateLineGraph()
+            //getValuesFromFirebase()
+            
+            DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(4), execute: {
+                // Put your code which should be executed with a delay here
+                self.updateLineGraph()
+            })
         }
     }
     
+    // Updates value in numbers, depending on how many
+    var pastSevenDays : [String] = []
+    
+    func getValuesFromFirebase() {
+        if let uid = Auth.auth().currentUser?.uid {
+            let userID = Auth.auth().currentUser?.uid
+            let dayTimePeriodFormatter = DateFormatter()
+            dayTimePeriodFormatter.dateFormat = "MM/dd/yyyy"
+            //"MMMM d, h:mm a"
+            let stringDate = dayTimePeriodFormatter.string(from: NSDate() as Date)
+            
+            // Gets past 7 days into the string, then
+            // have a forloop going through each day, then going through each emotion value,
+            // adding them to numbers
+            
+            for i in 0..<pastSevenDays.count {
+                let date = pastSevenDays[i]
+                
+                var ref2 = ref.child("users").child(userID!).child("emotions").child(date).child("joy")
+                
+                ref2.observe(DataEventType.value, with: {
+                    snapshot in
+                    
+                    if let item = snapshot.value as? Int {
+//                        value = item
+//                        self.currentValue = item
+                    }
+                }) { (error) in
+                    print(error.localizedDescription)
+                }
+            }
+        }
+    }
     
     func updateLineGraph(){
         var lineChartEntry  = [ChartDataEntry]() //this is the Array that will eventually be displayed on the graph.
@@ -165,7 +212,7 @@ class ChartsViewController: UIViewController {
         
         lineChart.isHidden = true
         pieChart.isHidden = false
-        setChart(dataPoints: months, values: unitsSold)
+        setChart(dataPoints: months, values: numbers)
         
         // Gesture Recognizer
         let swipeRight = UISwipeGestureRecognizer(target: self, action: #selector(self.respondToSwipeGesture))
