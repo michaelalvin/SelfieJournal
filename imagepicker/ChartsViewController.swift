@@ -20,6 +20,12 @@ class ChartsViewController: UIViewController {
     
     let months = ["Happy", "Sad", "Angry", "Surprised"]
     
+    var pastSevenDays : [String] = []
+    var pastSevenDaysAnger = [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
+    var pastSevenDaysSorrow = [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
+    var pastSevenDaysSurprised = [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
+    var pastSevenDaysJoy = [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
+    
     @IBOutlet weak var lineChart: LineChartView!
     
     @IBOutlet weak var pieChart: PieChartView!
@@ -30,7 +36,6 @@ class ChartsViewController: UIViewController {
         if(emotionSegment.selectedSegmentIndex == 0) {
             lineChart.isHidden = true
             pieChart.isHidden = false
-            numbers = [0.0, 0.0, 0.0, 0.0]
             getValuesFromFirebase()
             DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1), execute: {
                 // Put your code which should be executed with a delay here
@@ -40,24 +45,25 @@ class ChartsViewController: UIViewController {
         } else {
             lineChart.isHidden = false
             pieChart.isHidden = true
-            numbers = [0.0, 0.0, 0.0, 0.0]
             getValuesFromFirebase()
+            
             DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1), execute: {
                 // Put your code which should be executed with a delay here
-                self.updateLineGraph()
+                self.updateLineGraph(color: self.emotionSegment.selectedSegmentIndex)
             })
         }
     }
     
     // Updates value in numbers, depending on how many
-    var pastSevenDays : [String] = []
     func getPreviousWeek() {
+        pastSevenDays = []
+        
         let calendar = Calendar.current
         let dayTimePeriodFormatter = DateFormatter()
         dayTimePeriodFormatter.dateFormat = "MM/dd/yyyy"
         
         for i in 0..<7 {
-            var num = i
+            var num = 6 - i // So that most recent date is last in our array
             num = num * -1
             let twoDaysAgo = calendar.date(byAdding: .day, value: num, to: Date())
             let stringDate = dayTimePeriodFormatter.string(from: twoDaysAgo!)
@@ -65,20 +71,14 @@ class ChartsViewController: UIViewController {
         }
             
 //            let userID = Auth.auth().currentUser?.uid
-//            ref.child("users").child(userID!).child("emotions").child(stringDate).child("joy").setValue(arc4random_uniform(6) + 1)
-//            ref.child("users").child(userID!).child("emotions").child(stringDate).child("sorrow").setValue(arc4random_uniform(6) + 1)
-//            ref.child("users").child(userID!).child("emotions").child(stringDate).child("anger").setValue(arc4random_uniform(6) + 1)
-//            ref.child("users").child(userID!).child("emotions").child(stringDate).child("surprise").setValue(arc4random_uniform(6) + 1)
+//                  ref.child("users").child(userID!).child("emotions").child(stringDate).child("surprise").setValue(arc4random_uniform(6) + 1)
         
     }
     
     func getValuesFromFirebase() {
         if let uid = Auth.auth().currentUser?.uid {
+            numbers = [0.0, 0.0, 0.0, 0.0]
             let userID = Auth.auth().currentUser?.uid
-            //let dayTimePeriodFormatter = DateFormatter()
-            //dayTimePeriodFormatter.dateFormat = "MM/dd/yyyy"
-            //"MMMM d, h:mm a"
-            //let stringDate = dayTimePeriodFormatter.string(from: NSDate() as Date)
             
             // Gets past 7 days into the string, then
             // have a forloop going through each day, then going through each emotion value,
@@ -94,6 +94,7 @@ class ChartsViewController: UIViewController {
                     snapshot in
                     if let item = snapshot.value as? Int { // item is emotion int value
                         self.numbers[0] = self.numbers[0] + Double(item)
+                        self.pastSevenDaysJoy[i] = Double(item)
                     }
                 }) { (error) in
                     print(error.localizedDescription)
@@ -104,6 +105,7 @@ class ChartsViewController: UIViewController {
                     snapshot in
                     if let item = snapshot.value as? Int { // item is emotion int value
                         self.numbers[1] = self.numbers[1] + Double(item)
+                        self.pastSevenDaysSorrow[i] = Double(item)
                     }
                 }) { (error) in
                     print(error.localizedDescription)
@@ -114,6 +116,7 @@ class ChartsViewController: UIViewController {
                     snapshot in
                     if let item = snapshot.value as? Int { // item is emotion int value
                         self.numbers[2] = self.numbers[2] + Double(item)
+                        self.pastSevenDaysAnger[i] = Double(item)
                     }
                 }) { (error) in
                     print(error.localizedDescription)
@@ -124,6 +127,7 @@ class ChartsViewController: UIViewController {
                     snapshot in
                     if let item = snapshot.value as? Int { // item is emotion int value
                         self.numbers[3] = self.numbers[3] + Double(item)
+                        self.pastSevenDaysSurprised[i] = Double(item)
                     }
                 }) { (error) in
                     print(error.localizedDescription)
@@ -132,76 +136,34 @@ class ChartsViewController: UIViewController {
         }
     }
     
-    func updateLineGraph(){
-        var lineChartEntry  = [ChartDataEntry]() //this is the Array that will eventually be displayed on the graph.
+    func updateLineGraph(color: Int){
+        // Data
+        var days : [String] = []
         
-        //here is the for loop
-        for i in 0..<numbers.count {
-            
-            let value = ChartDataEntry(x: Double(i), y: numbers[i]) // here we set the X and Y status in a data chart entry
-            
-            lineChartEntry.append(value) // here we add it to the data set
+        for i in 0...6 {
+            let day = pastSevenDays[i].replacingOccurrences(of: "/2018", with: "")
+            days.append(day)
         }
         
-        let line1 = LineChartDataSet(values: lineChartEntry, label: "Number of Happy Moments") //Here we convert lineChartEntry to a LineChartDataSet
-        let data = LineChartData() //This is the object that will be added to the chart
-        
-        data.addDataSet(line1) //Adds the line to the dataSet
-        data.setDrawValues(true)
-        
-        var gradientColors = [UIColor.magenta.cgColor, UIColor.clear.cgColor] as CFArray
-        var color = UIColor.magenta
-        
+        //let unitsSold = [20.0, 4.0, 3.0, 6.0, 12.0, 16.0, 4.0]
         if(emotionSegment.selectedSegmentIndex == 1) {
-            line1.colors = [UIColor.magenta] //Sets the colour to magenta
-            line1.setCircleColor(UIColor.magenta)
-            line1.circleHoleColor = UIColor.magenta
-        } else if (emotionSegment.selectedSegmentIndex == 2){
-            color = UIColor(rgb: 0x559efc)
-            line1.colors = [color] //Sets the colour to magenta
-            line1.setCircleColor(color)
-            line1.circleHoleColor = color
-            gradientColors = [color.cgColor, UIColor.clear.cgColor] as CFArray
-        } else if (emotionSegment.selectedSegmentIndex == 3){
-            color = UIColor(rgb: 0xff2d2d)
-            line1.colors = [color] //Sets the colour to magenta
-            line1.setCircleColor(color)
-            line1.circleHoleColor = color
-            gradientColors = [color.cgColor, UIColor.clear.cgColor] as CFArray
+            lineChart.setLineChartData(xValues: days, yValues: pastSevenDaysJoy, label: "Number of Happy Moments", colorss: color)
+        } else if(emotionSegment.selectedSegmentIndex == 2) {
+            lineChart.setLineChartData(xValues: days, yValues: pastSevenDaysSorrow, label: "Number of Sad Moments", colorss: color)
+        } else if(emotionSegment.selectedSegmentIndex == 3) {
+            lineChart.setLineChartData(xValues: days, yValues: pastSevenDaysAnger, label: "Number of Anger Moments", colorss: color)
         } else {
-            color = UIColor(rgb: 0x64dd49)
-            line1.colors = [color] //Sets the colour to magenta
-            line1.setCircleColor(color)
-            line1.circleHoleColor = color
-            gradientColors = [color.cgColor, UIColor.clear.cgColor] as CFArray
+            lineChart.setLineChartData(xValues: days, yValues: pastSevenDaysSurprised, label: "Number of Surprise Moments", colorss: color)
         }
+    
         
+        //lineChart.animate(xAxisDuration: 2.0, yAxisDuration: 2.0, easingOption: .easeInSine)
         
-        line1.circleRadius = 4.0
-        
-        lineChart.animate(xAxisDuration: 2.0, yAxisDuration: 2.0, easingOption: .easeInSine)
-        
-        //Gradient fill
-        let colorLocations: [CGFloat] = [1.0, 0.0]
-        guard let gradient = CGGradient.init(colorsSpace: CGColorSpaceCreateDeviceRGB(), colors: gradientColors, locations: colorLocations) else { print("gradient error"); return;
-        }
-        line1.fill = Fill.fillWithLinearGradient(gradient, angle: 90.0)
-        line1.drawFilledEnabled = true
-        
-        //Axes set up
-        lineChart.xAxis.labelPosition = .bottom
-        lineChart.xAxis.drawGridLinesEnabled = false
-        lineChart.legend.enabled = true
-        lineChart.rightAxis.enabled = false
-        lineChart.leftAxis.drawGridLinesEnabled = false
-        lineChart.leftAxis.drawLabelsEnabled = true
-        
-        lineChart.data = data //finally - it adds the chart data to the chart and causes an update
-        lineChart.chartDescription?.text = "January 1 - 7"
+        let description = pastSevenDays[0] + "-" + pastSevenDays[6]
+        lineChart.chartDescription?.text = description
     }
     
     func setChart(dataPoints: [String], values: [Double]) {
-        
         var dataEntries: [ChartDataEntry] = []
         
         for i in 0..<dataPoints.count {
@@ -251,7 +213,9 @@ class ChartsViewController: UIViewController {
         pieChart.legend.enabled = true
         pieChart.animate(xAxisDuration: 2.0, yAxisDuration: 2.0, easingOption: .easeInSine)
         pieChart.data = pieChartData
-        pieChart.chartDescription?.text = "January 1 - 7"
+        
+        let description = pastSevenDays[0] + "-" + pastSevenDays[6]
+        pieChart.chartDescription?.text = description
     }
     
     override func viewDidLoad() {
@@ -261,7 +225,13 @@ class ChartsViewController: UIViewController {
         
         lineChart.isHidden = true
         pieChart.isHidden = false
-        setChart(dataPoints: months, values: numbers)
+        //setChart(dataPoints: months, values: numbers)
+        
+        getValuesFromFirebase()
+        DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1), execute: {
+            // Put your code which should be executed with a delay here
+            self.setChart(dataPoints: self.months, values: self.numbers)
+        })
         
         // Gesture Recognizer
         let swipeRight = UISwipeGestureRecognizer(target: self, action: #selector(self.respondToSwipeGesture))

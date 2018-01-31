@@ -268,11 +268,11 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7Rt-Eo-mQX" customClass="LineChartView" customModule="Charts">
-                                <rect key="frame" x="15" y="90" width="345" height="500"/>
+                                <rect key="frame" x="15" y="90" width="345" height="525"/>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="345" id="3pZ-7b-9Ik"/>
-                                    <constraint firstAttribute="height" constant="500" id="xyK-OH-6AN"/>
+                                    <constraint firstAttribute="height" constant="525" id="xyK-OH-6AN"/>
                                 </constraints>
                             </view>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="hDI-xD-UtV">
@@ -293,40 +293,40 @@
                                 </connections>
                             </segmentedControl>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vK8-sh-4CN" customClass="PieChartView" customModule="Charts">
-                                <rect key="frame" x="16" y="91" width="345" height="500"/>
+                                <rect key="frame" x="16" y="91" width="345" height="525"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="345" id="a1x-o5-yo8"/>
-                                    <constraint firstAttribute="height" constant="500" id="deb-OW-9jC"/>
+                                    <constraint firstAttribute="height" constant="525" id="deb-OW-9jC"/>
                                 </constraints>
                             </view>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="dot" translatesAutoresizingMaskIntoConstraints="NO" id="QHD-NE-0gN">
                                 <rect key="frame" x="157" y="623" width="24" height="24"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="24" id="fNg-CX-PPg"/>
+                                    <constraint firstAttribute="width" constant="24" id="HaY-ZZ-rt5"/>
                                 </constraints>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="dot2" translatesAutoresizingMaskIntoConstraints="NO" id="dsD-DI-Bxe">
                                 <rect key="frame" x="196" y="623" width="24" height="24"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="24" id="X6L-5K-z9f"/>
+                                    <constraint firstAttribute="width" constant="24" id="5aJ-YV-Z1j"/>
                                 </constraints>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="QHD-NE-0gN" firstAttribute="top" secondItem="dsD-DI-Bxe" secondAttribute="top" id="7S4-lV-QT1"/>
-                            <constraint firstItem="QHD-NE-0gN" firstAttribute="bottom" secondItem="dsD-DI-Bxe" secondAttribute="bottom" id="HzV-Vo-Bfp"/>
-                            <constraint firstItem="QHD-NE-0gN" firstAttribute="top" secondItem="vK8-sh-4CN" secondAttribute="bottom" constant="32" id="QXa-BF-ooP"/>
+                            <constraint firstItem="QHD-NE-0gN" firstAttribute="bottom" secondItem="dsD-DI-Bxe" secondAttribute="bottom" id="GRr-fS-LY2"/>
                             <constraint firstItem="vK8-sh-4CN" firstAttribute="top" secondItem="hDI-xD-UtV" secondAttribute="bottom" constant="23" id="SID-WQ-PVm"/>
+                            <constraint firstItem="QHD-NE-0gN" firstAttribute="top" secondItem="7Rt-Eo-mQX" secondAttribute="bottom" constant="8" symbolic="YES" id="SfB-nL-ixZ"/>
                             <constraint firstItem="7Rt-Eo-mQX" firstAttribute="top" secondItem="iQy-SM-Qyi" secondAttribute="bottom" constant="70" id="UkK-bZ-kQB"/>
+                            <constraint firstItem="QHD-NE-0gN" firstAttribute="top" secondItem="dsD-DI-Bxe" secondAttribute="top" id="ZGc-Ay-5db"/>
+                            <constraint firstAttribute="bottom" secondItem="QHD-NE-0gN" secondAttribute="bottom" constant="20" symbolic="YES" id="ZMQ-y2-YdB"/>
                             <constraint firstItem="vK8-sh-4CN" firstAttribute="leading" secondItem="GqI-Yg-6xr" secondAttribute="leadingMargin" id="Zge-Zf-8Fp"/>
                             <constraint firstItem="hDI-xD-UtV" firstAttribute="top" secondItem="iQy-SM-Qyi" secondAttribute="bottom" constant="20" id="dxG-H2-QgF"/>
-                            <constraint firstItem="QHD-NE-0gN" firstAttribute="leading" secondItem="GqI-Yg-6xr" secondAttribute="leading" constant="157" id="krE-3Z-mid"/>
-                            <constraint firstAttribute="bottom" secondItem="QHD-NE-0gN" secondAttribute="bottom" constant="20" symbolic="YES" id="p1s-BV-e41"/>
+                            <constraint firstItem="dsD-DI-Bxe" firstAttribute="leading" secondItem="QHD-NE-0gN" secondAttribute="trailing" constant="15" id="jIe-5d-UR3"/>
+                            <constraint firstItem="QHD-NE-0gN" firstAttribute="leading" secondItem="GqI-Yg-6xr" secondAttribute="leading" constant="157" id="pgu-1X-P21"/>
                             <constraint firstItem="7Rt-Eo-mQX" firstAttribute="leading" secondItem="GqI-Yg-6xr" secondAttribute="leading" constant="15" id="tts-Hp-E1h"/>
                             <constraint firstItem="hDI-xD-UtV" firstAttribute="leading" secondItem="GqI-Yg-6xr" secondAttribute="leadingMargin" id="v6m-g1-4F1"/>
-                            <constraint firstItem="dsD-DI-Bxe" firstAttribute="leading" secondItem="QHD-NE-0gN" secondAttribute="trailing" constant="15" id="wf4-o6-66b"/>
                         </constraints>
                     </view>
                     <connections>
@@ -346,7 +346,6 @@
         <image name="dot2" width="1050" height="1050"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="mYT-gl-A8c"/>
         <segue reference="HeX-WV-pbP"/>
     </inferredMetricsTieBreakers>
 </document>
