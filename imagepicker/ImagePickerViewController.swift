@@ -24,6 +24,10 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     let ref = Database.database().reference()
     var addEmotion = "emotion"
     
+    @IBOutlet weak var choosePhotoButton: UIButton!
+    
+    @IBOutlet weak var journalButtonButton: UIButton!
+    
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var spinner: UIActivityIndicatorView!
    
@@ -31,6 +35,9 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     @IBOutlet weak var faceResults: UITextView!
     @IBOutlet weak var inputOne: UITextField!
 
+    @IBOutlet weak var insertselfieLabel: UILabel!
+    
+    
     var googleAPIKey = "YOUR_API_KEY"
     var googleURL: URL {
         return URL(string: "https://vision.googleapis.com/v1/images:annotate?key=\("AIzaSyDXV1mjaTKtYl3DQfW74LC5GfDvjgLehtQ")")!
@@ -99,6 +106,8 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         spinner.hidesWhenStopped = true
         
         inputOne.underlined()
+        inputOne.isHidden = true
+        journalButtonButton.isHidden = true
         
         // Gesture Recognizer
         let swipeRight = UISwipeGestureRecognizer(target: self, action: #selector(self.respondToSwipeGesture))
@@ -150,6 +159,7 @@ extension ViewController {
             self.labelResults.isHidden = true
             self.faceResults.isHidden = false
             self.faceResults.text = ""
+            self.journalButtonButton.isHidden = false
             
             // Check for errors
             if (errorObj.dictionaryValue != [:]) {
@@ -224,6 +234,9 @@ extension ViewController {
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         if let pickedImage = info[UIImagePickerControllerOriginalImage] as? UIImage {
+            self.choosePhotoButton.isHidden = true
+            self.insertselfieLabel.isHidden = true
+            
             imageView.contentMode = .scaleAspectFit
             imageView.isHidden = false // You could optionally display the image here by setting imageView.image = pickedImage
             imageView.image = pickedImage
